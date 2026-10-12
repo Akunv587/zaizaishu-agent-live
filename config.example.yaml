@@ -1,0 +1,109 @@
+app:
+  name: zaizaishu-agent
+  log_level: info
+  replay_file: ""          # 非空则离线重放模式
+
+danmaku:
+  room_num: ""            # 抖音直播间房间号（粘贴房间号或整条直播页 URL 均可）；非空启用内置采集器
+  # 可选增强：浏览器完整 cookie（真实登录态可提升风控信任度）。
+  # 直连链路只依赖首页自取的 ttwid——正常情况下留空即可，无需导出 cookie。
+  # 需要时两种贴法任选（代码都能识别）：
+  # A. F12 → 网络(Network) → 任一 douyin.com 请求 → 标头(Headers) → 请求标头里
+  #    cookie: 一整行 → 复制值 → 粘贴到下面引号内（单行）。
+  # B. cookies.txt 导出插件（Get cookies.txt LOCALLY 等）→ 把整个文件内容粘到
+  #    下面 | 竖线之后（保持每行前 4 个空格缩进，支持多行，自动转换）。
+  cookie: ""
+  ws_listen: 127.0.0.1:8765   # room_num 为空时的兜底：外部 WS 推流（Dycast 等）
+
+webui:                        # 可视化控制台（桌面窗口加载的就是它）
+  enabled: true
+  listen: 127.0.0.1:8766
+
+llm:
+  # 三项推荐在控制台「配置摘要 → 配置 LLM」里填写（保存即热生效，无需重启）；
+  # 直接改本文件也行（重启后生效）。留空或占位时应用照常启动，
+  # 仅弹幕文字回复停用（礼物感谢/关注欢迎/口播等本地模板话术不受影响）。
+  base_url: https://api.example.com/v1   # OpenAI 兼容地址，如 https://api.deepseek.com
+  api_key: "PLACEHOLDER-待填真实Key"              # 大模型 API Key（本文件不入 git）
+  model: "PLACEHOLDER-待填模型名"                  # 模型 ID，如 deepseek-v4-flash / gpt-4o-mini
+  temperature: 0.8
+  max_tokens: 500
+  timeout_seconds: 8
+
+tts:
+  voice_id: "demoVoice001"   # 克隆音色；向导克隆新音色后在此切换
+  model: "speech-2.8-hd"
+  speed: 1.0    # 语速 0.5~2.0（音色工坊「参数微调」滑块写入）
+  vol: 1.0      # 音量 0~10
+  pitch: 0      # 音调 -12~+12 半音
+  emotion: ""   # 语气情绪：留空=自动推断；可选 happy/sad/angry/fearful/disgusted/surprised/calm/fluent
+  # 话术文本中写「|」自动转为官方停顿标记 <#秒数#>（每竖线 0.4s，|| 即 0.8s）
+  # api_key 与 endpoint 不在此配置——统一存于 voice_clone/voice_clone_data/config.json
+
+audio:
+  device: "CABLE Input (VB-Audio Virtual C"   # VB-Cable 播放侧 MME 条目（名称须精确到截断处，勿补全括号）
+  sample_rate: 24000
+  channels: 1
+  gap_ms: 800              # 两条话术间隔
+
+persona:
+  nickname: "仔仔鼠"
+  style: "口语化、热情、短句、爱说兄弟们和哈哈"
+  max_reply_chars: 40
+  nickname_prefix_len: 2
+
+game:
+  name: "《示例游戏》"
+  intro: "一句话玩法亮点"
+  download_hint: "点点小手柄就能下载，不会的看评论区置顶"
+  highlights: ["卖点一", "卖点二"]
+
+events:
+  # stale_drop_s=P0礼物过期丢弃秒数；stale_drop_p1_s=P1弹幕回复专用（LLM 生成+积压常超 30s，90s 内语境仍有效）；
+  # stale_drop_p2_s=P2话题口播专用（让位积压上限 1 条，需挨过当前在播的最长话题，默认 180s）
+  chat:      { enabled: true, merge_window_s: 3, stale_drop_s: 30, stale_drop_p1_s: 90, stale_drop_p2_s: 180, ignore_noise_p: 0.2 }
+  gift:      { enabled: true, combo_timeout_s: 5 }
+  follow:    { enabled: true, cooldown_s: 30, probability: 0.6 }
+  fansclub:  { enabled: true, cooldown_s: 30, probability: 0.8 }
+  enter:     { enabled: false }
+
+schedule:
+  enabled: true
+  interval_min: 7          # 实际取 7±1 分钟随机
+  pool:
+    - "兄弟们点点关注不迷路"
+    - "想玩同款的点点小手柄"
+    - "粉丝团灯牌点起来，谢谢大家"
+    - "感谢兄弟们陪着看，主播接着打"
+    - "刚进来的宝子点点关注，马上上大分"
+    - "评论区置顶有下载教程，不会的去看哈"
+
+safety:
+  block_words_file: blockwords.txt
+  fallback_reply: "哈哈这个咱们直播间聊哈"
+  pause_hotkey: f9
+
+watchdog:
+  silent_minutes: 10
+  silent_fallback_text: "大家有问题随时弹幕问我哈"   # 静默兜底口播文案
+  fail_threshold: 10        # llm_fail/tts_fail 累计超过该值时桌面告警并复位计数
+
+agent:
+  # 智能体接管总开关（默认关闭）。关闭时产品行为与 v3 旧版完全一致。
+  # 开启后弹幕/礼物/关注/进场/口播全部由智能体自主判断并生成回复。
+  # 注意：开启时除敏感词双检外的全部护栏（聚合窗口/连击/冷却/概率/队列过期/P2 让位）
+  #      一并放开，且不做任何限流——LLM 调用量随弹幕量线性增长，请留意成本与延迟。
+  enabled: false
+  retrieve:
+    layer: l2                 # l1=仅素材直注；l2=追加关键词召回（默认）；l3=预留未实现
+    top_k: 5                  # L2 召回条数
+  memory:
+    max_events: 50            # 单场事件记忆容量（上下文窗口，非限流）
+    max_spoken: 20            # 已说过的回复记忆容量（防复读）
+    max_notes: 10             # 临时笔记容量
+  emotion:
+    enabled: true             # 情绪动态化：true=按决策逐条覆盖 emotion/speed；false=一律 default 档
+    onsite_fallback: true     # 未登记档位是否允许现场 TTS（false=回落 default 预录音频，延迟更稳）
+  feedback:
+    enabled: true             # 是否在直播中枢显示反馈按钮（采纳/弃用/改写）
+  decision_log: true          # 是否落盘决策日志 logs/agent-YYYYMMDD.jsonl

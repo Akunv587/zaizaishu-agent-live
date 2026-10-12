@@ -1,0 +1,11 @@
+{"roomId": 123456789, "nickname": "仔仔鼠小号", "title": "合成冒烟样本（非真实录制）"}
+{"timestamp": 1700000000000, "method": "WebcastChatMessage", "user": {"name": "观众甲"}, "content": "主播这是什么游戏"}
+{"timestamp": 1700000002000, "method": "WebcastChatMessage", "user": {"name": "观众乙"}, "content": "主播这是什么游戏呀"}
+{"timestamp": 1700000004000, "method": "WebcastChatMessage", "user": {"name": "观众丙"}, "content": "666"}
+{"timestamp": 1700000010000, "method": "WebcastGiftMessage", "user": {"name": "观众甲"}, "gift": {"name": "小心意", "count": 1, "price": 100, "repeatEnd": false}}
+{"timestamp": 1700000012000, "method": "WebcastGiftMessage", "user": {"name": "观众甲"}, "gift": {"name": "小心意", "count": 2, "price": 100, "repeatEnd": false}}
+{"timestamp": 1700000014000, "method": "WebcastGiftMessage", "user": {"name": "观众甲"}, "gift": {"name": "小心意", "count": 3, "price": 100, "repeatEnd": true}}
+{"timestamp": 1700000020000, "method": "WebcastSocialMessage", "user": {"name": "观众乙"}}
+{"timestamp": 1700000025000, "method": "WebcastFansclubMessage", "user": {"name": "观众丙"}, "content": "加入粉丝团"}
+{"timestamp": 1700000030000, "method": "WebcastMemberMessage", "user": {"name": "观众丁"}}
+{"timestamp": 1700000040000, "method": "WebcastChatMessage", "user": {"name": "观众丁"}, "content": "怎么下载"}

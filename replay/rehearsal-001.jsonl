@@ -1,0 +1,15 @@
+{"roomId": 123456791, "nickname": "仔仔鼠小号", "title": "合成整场彩排样本（非真实录制）：五类事件+三档礼物+静默段+口播窗口，约 8.4 分钟"}
+{"timestamp": 1700000001000, "method": "WebcastChatMessage", "user": {"name": "观众甲"}, "content": "主播这是什么游戏"}
+{"timestamp": 1700000002500, "method": "WebcastChatMessage", "user": {"name": "观众乙"}, "content": "主播这是什么游戏呀"}
+{"timestamp": 1700000004000, "method": "WebcastChatMessage", "user": {"name": "观众丙"}, "content": "666"}
+{"timestamp": 1700000010000, "method": "WebcastGiftMessage", "user": {"name": "观众甲"}, "gift": {"name": "小心意", "count": 1, "price": 10, "repeatEnd": false}}
+{"timestamp": 1700000012000, "method": "WebcastGiftMessage", "user": {"name": "观众甲"}, "gift": {"name": "小心意", "count": 2, "price": 10, "repeatEnd": false}}
+{"timestamp": 1700000014000, "method": "WebcastGiftMessage", "user": {"name": "观众甲"}, "gift": {"name": "小心意", "count": 3, "price": 10, "repeatEnd": true}}
+{"timestamp": 1700000018000, "method": "WebcastGiftMessage", "user": {"name": "观众丁"}, "gift": {"name": "玫瑰", "count": 1, "price": 520, "repeatEnd": true}}
+{"timestamp": 1700000022000, "method": "WebcastGiftMessage", "user": {"name": "观众戊"}, "gift": {"name": "嘉年华", "count": 1, "price": 2000, "repeatEnd": true}}
+{"timestamp": 1700000026000, "method": "WebcastSocialMessage", "user": {"name": "观众丁"}}
+{"timestamp": 1700000028000, "method": "WebcastFansclubMessage", "user": {"name": "观众丙"}, "content": "加入粉丝团"}
+{"timestamp": 1700000032000, "method": "WebcastMemberMessage", "user": {"name": "观众戊"}}
+{"timestamp": 1700000040000, "method": "WebcastChatMessage", "user": {"name": "观众己"}, "content": "怎么下载"}
+{"timestamp": 1700000044000, "method": "WebcastChatMessage", "user": {"name": "观众庚"}, "content": "这个手机能玩吗"}
+{"timestamp": 1700000480000, "method": "WebcastChatMessage", "user": {"name": "观众辛"}, "content": "主播回来了吗"}

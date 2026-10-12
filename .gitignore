@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+
+# PyInstaller
+build/
+dist/
+*.manifest
+*.spec.bak
+
+# 测试
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# 运行时数据（不入 git）
+config.yaml
+logs/
+profiles/
+desktop_state.json
+voice_clone/voice_clone_data/
+*.log
+test_out.txt
+
+# 重放数据：真实录制含原始弹幕，一律不入库；
+# 例外——合成测试夹具需入库，供「开关 OFF/ON 双跑对比」回归使用
+replay/*
+!replay/quiet-001.jsonl
+!replay/rehearsal-001.jsonl
+!replay/smoke-001.jsonl
+
+# 存档与反馈（用户数据）
+profiles/*/agent/examples.jsonl
+profiles/*/agent/feedback.jsonl
+
+# IDE / 系统
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

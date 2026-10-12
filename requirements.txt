@@ -1,0 +1,7 @@
+websockets>=12.0
+httpx>=0.27.0
+sounddevice>=0.4.6
+pynput>=1.7.6
+pyyaml>=6.0
+plyer>=2.1.0
+pytest>=8.0.0

@@ -1,0 +1,10 @@
+# 构建期/开发期依赖（不打进运行时环境；运行时依赖见 requirements.txt）
+# 用途：
+#   Pillow    → scripts/make_icon.py 生成 assets/icon.ico
+#   PyInstaller → 按 zaizaishu.spec 打单文件 exe
+#   pywebview → desktop.py（exe 入口）的桌面壳；**它不在 requirements.txt 里**
+#               （旧版同样没声明，属历史遗留），但打包时必须装，否则 exe 起不来。
+#               只跑源码 main.py（控制台路线）不需要它。
+Pillow>=10.0
+PyInstaller>=6.22
+pywebview>=6.0

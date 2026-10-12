@@ -1,0 +1,5 @@
+{"roomId": 123456790, "nickname": "仔仔鼠小号", "title": "合成稀疏长样本（非真实录制）：开头事件后长静默，供口播/看门狗验收"}
+{"timestamp": 1700000000000, "method": "WebcastChatMessage", "user": {"name": "观众甲"}, "content": "主播这游戏叫什么"}
+{"timestamp": 1700000030000, "method": "WebcastChatMessage", "user": {"name": "观众乙"}, "content": "刚进来，主播玩的是啥"}
+{"timestamp": 1700000060000, "method": "WebcastSocialMessage", "user": {"name": "观众丙"}}
+{"timestamp": 1700000600000, "method": "WebcastChatMessage", "user": {"name": "观众丁"}, "content": "主播还在吗"}
